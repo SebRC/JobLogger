@@ -1,0 +1,43 @@
+.button {
+  border: none;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.25;
+  line-height: 24px;
+  color: black;
+  border-radius: 6px;
+  height: 36px;
+  width: 125px;
+  padding: 6px 16px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button[disabled] {
+  pointer-events: none;
+  color: rgba(16, 16, 16, 0.3);
+}
+
+.contained {
+  background-color: red;
+  color: white;
+}
+
+.outlined {
+  background-color: white;
+  color: red;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: orange;
+}
+
+.outlined:hover {
+  background-color: orange;
+}
+
+.outlined:focus {
+  outline: solid 2px red;
+}
