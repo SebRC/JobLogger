@@ -12,7 +12,7 @@ interface DetailsPanelProps {
 export const DetailsPanel: FunctionComponent<DetailsPanelProps> = ({ title, onClose, children }) => {
   return (
     <Paper sx={{ p: "8px", width: "40%" }}>
-      <IconButton onClick={onClose} sx={{ position: "absolute", right: 0, zIndex: 2 }}>
+      <IconButton onClick={onClose} sx={{ position: "absolute", right: 4, zIndex: 2 }}>
         <Close />
       </IconButton>
       <Flexbox gap={16} flexDirection="column">
