@@ -1,4 +1,3 @@
-"use client";
 import React, { FunctionComponent, ReactNode } from "react";
 
 interface FlexboxProps {
@@ -17,73 +16,33 @@ interface FlexboxProps {
     | "space-evenly";
   alignItems?: "normal" | "start" | "end" | "center" | "flex-start" | "flex-end" | "stretch";
   overflow?: "visible" | "hidden" | "scroll" | "auto";
-  marginBottom?: any;
-  marginTop?: any;
-  marginRight?: any;
-  marginLeft?: any;
-  paddingBottom?: any;
-  paddingTop?: any;
-  paddingRight?: any;
-  paddingLeft?: any;
-  height?: any;
-  minHeight?: any;
-  maxHeight?: any;
-  width?: any;
-  minWidth?: any;
-  maxWidth?: any;
-  gap?: string | number;
+  marginBottom?: string;
+  marginTop?: string;
+  marginRight?: string;
+  marginLeft?: string;
+  paddingBottom?: string;
+  paddingTop?: string;
+  paddingRight?: string;
+  paddingLeft?: string;
+  height?: string;
+  minHeight?: string;
+  maxHeight?: string;
+  width?: string;
+  minWidth?: string;
+  maxWidth?: string;
   debug?: boolean;
+  gap?: string | number;
   style?: React.CSSProperties;
   children: ReactNode;
 }
 
-export const Flexbox: FunctionComponent<FlexboxProps> = ({
-  flexDirection = "row",
-  justifyContent = "normal",
-  alignItems = "normal",
-  overflow = "visible",
-  marginBottom = "0px",
-  marginTop = "0px",
-  marginRight = "0px",
-  marginLeft = "0px",
-  paddingBottom = "0px",
-  paddingTop = "0px",
-  paddingRight = "0px",
-  paddingLeft = "0px",
-  height = "auto",
-  minHeight = "auto",
-  maxHeight = "auto",
-  width = "auto",
-  minWidth = "auto",
-  maxWidth = "auto",
-  gap = "normal",
-  debug = false,
-  style = {},
-  children,
-}) => {
+export const Flexbox: FunctionComponent<FlexboxProps> = ({ debug, gap, style, children, ...rest }) => {
   return (
     <div
       style={{
         display: "flex",
         position: "relative",
-        flexDirection: flexDirection,
-        justifyContent: justifyContent,
-        alignItems: alignItems,
-        overflow: overflow,
-        height: height,
-        minHeight: minHeight,
-        maxHeight: maxHeight,
-        width: width,
-        minWidth: minWidth,
-        maxWidth: maxWidth,
-        marginBottom: marginBottom,
-        marginTop: marginTop,
-        marginRight: marginRight,
-        marginLeft: marginLeft,
-        paddingBottom: paddingBottom,
-        paddingTop: paddingTop,
-        paddingRight: paddingRight,
-        paddingLeft: paddingLeft,
+        ...rest,
         gap: gap && gap,
         borderWidth: debug ? "2px" : "0px",
         borderStyle: debug ? "solid" : "none",
