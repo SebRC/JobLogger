@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React, { FunctionComponent, ReactNode } from "react";
 
 interface FlexboxProps {
@@ -32,25 +33,13 @@ interface FlexboxProps {
   maxWidth?: string;
   debug?: boolean;
   gap?: string | number;
-  style?: React.CSSProperties;
   children: ReactNode;
 }
 
-export const Flexbox: FunctionComponent<FlexboxProps> = ({ debug, gap, style, children, ...rest }) => {
+export const Flexbox: FunctionComponent<FlexboxProps> = ({ debug, flexDirection = "row", gap, children, ...rest }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        position: "relative",
-        ...rest,
-        gap: gap && gap,
-        borderWidth: debug ? "2px" : "0px",
-        borderStyle: debug ? "solid" : "none",
-        borderColor: debug ? "red" : "transparent",
-        ...style,
-      }}
-    >
+    <Box gap={gap} display={"flex"} flexDirection={flexDirection} sx={{ ...rest }}>
       {children}
-    </div>
+    </Box>
   );
 };

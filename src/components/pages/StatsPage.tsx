@@ -1,11 +1,12 @@
-import { Paper, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { FunctionComponent } from "react";
 import { Flexbox } from "../layout/flexbox/Flexbox";
+import { Paper } from "../layout/paper/Paper";
 
 export const StatsPage: FunctionComponent = () => {
   return (
-    <Paper sx={{ p: "8px" }}>
-      <Flexbox gap={8} flexDirection="column">
+    <Paper>
+      <Flexbox gap={2} flexDirection="column">
         <Typography variant="h4" fontWeight={700}>
           Stats
         </Typography>
