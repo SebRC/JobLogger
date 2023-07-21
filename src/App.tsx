@@ -1,4 +1,4 @@
-import { AppBar, Button, ThemeProvider, Toolbar, Typography } from "@mui/material";
+import { AppBar, ThemeProvider, Toolbar, Typography } from "@mui/material";
 import theme from "./styles/theme";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -15,7 +15,6 @@ function App() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Job search
           </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
       <Page>
