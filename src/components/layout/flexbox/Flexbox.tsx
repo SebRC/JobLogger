@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, SxProps } from "@mui/material";
 import React, { FunctionComponent, ReactNode } from "react";
 
 interface FlexboxProps {
@@ -17,28 +17,24 @@ interface FlexboxProps {
     | "space-evenly";
   alignItems?: "normal" | "start" | "end" | "center" | "flex-start" | "flex-end" | "stretch";
   overflow?: "visible" | "hidden" | "scroll" | "auto";
-  marginBottom?: string;
-  marginTop?: string;
-  marginRight?: string;
-  marginLeft?: string;
-  paddingBottom?: string;
-  paddingTop?: string;
-  paddingRight?: string;
-  paddingLeft?: string;
   height?: string;
-  minHeight?: string;
-  maxHeight?: string;
   width?: string;
-  minWidth?: string;
-  maxWidth?: string;
   debug?: boolean;
   gap?: string | number;
+  sx?: SxProps;
   children: ReactNode;
 }
 
-export const Flexbox: FunctionComponent<FlexboxProps> = ({ debug, flexDirection = "row", gap, children, ...rest }) => {
+export const Flexbox: FunctionComponent<FlexboxProps> = ({
+  debug,
+  flexDirection = "row",
+  gap = "normal",
+  children,
+  sx,
+  ...rest
+}) => {
   return (
-    <Box gap={gap} display={"flex"} flexDirection={flexDirection} sx={{ ...rest }}>
+    <Box gap={gap} display={"flex"} position={"relative"} flexDirection={flexDirection} {...rest} sx={{ ...sx }}>
       {children}
     </Box>
   );

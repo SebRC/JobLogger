@@ -14,7 +14,7 @@ export const JobTable: FunctionComponent = () => {
   ];
 
   return (
-    <Flexbox gap={16}>
+    <Flexbox gap={2}>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

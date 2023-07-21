@@ -1,7 +1,8 @@
-import { IconButton, Paper, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { FunctionComponent, ReactNode } from "react";
 import { Flexbox } from "../layout/flexbox/Flexbox";
-import Close from "@mui/icons-material/Close";
+import { Paper } from "../layout/paper/Paper";
+import { ButtonClose } from "../button/ButtonClose";
 
 interface DetailsPanelProps {
   title: string;
@@ -11,11 +12,9 @@ interface DetailsPanelProps {
 
 export const DetailsPanel: FunctionComponent<DetailsPanelProps> = ({ title, onClose, children }) => {
   return (
-    <Paper sx={{ p: "8px", width: "40%" }}>
-      <IconButton onClick={onClose} sx={{ position: "absolute", right: 4, zIndex: 2 }}>
-        <Close />
-      </IconButton>
-      <Flexbox gap={16} flexDirection="column">
+    <Paper sx={{ width: "40%" }}>
+      <ButtonClose onClose={onClose} />
+      <Flexbox gap={4} flexDirection="column" width="100%">
         <Typography variant="h4" fontWeight={700}>
           {title}
         </Typography>

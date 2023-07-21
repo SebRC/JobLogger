@@ -3,6 +3,7 @@ import { Button as MaterialButton, SxProps } from "@mui/material";
 
 interface ButtonProps {
   variant?: "contained" | "outlined" | "text";
+  color?: "error" | "info" | "inherit" | "primary" | "secondary" | "success" | "warning";
   onClick: () => React.MouseEventHandler<HTMLButtonElement>;
   sx?: SxProps;
   children: ReactNode;

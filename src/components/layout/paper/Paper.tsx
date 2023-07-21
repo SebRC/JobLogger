@@ -9,6 +9,8 @@ interface PaperProps {
 
 export const Paper: FunctionComponent<PaperProps> = (props) => {
   return (
-    <MaterialPaper sx={{ gap: props.gap, p: "8px", display: "flex", ...props.sx }}>{props.children}</MaterialPaper>
+    <MaterialPaper sx={{ gap: props.gap, p: "8px", display: "flex", position: "relative", ...props.sx }}>
+      {props.children}
+    </MaterialPaper>
   );
 };
