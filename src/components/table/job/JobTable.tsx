@@ -1,20 +1,16 @@
 "use client";
-import { FunctionComponent, ReactNode, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { Job } from "../../../data/job/job";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@mui/material";
 import { Flexbox } from "../../layout/flexbox/Flexbox";
 import { DetailsPanel } from "../../panel/DetailsPanel";
 import { JobStatus } from "../../../data/job/status";
 import iconsMap from "../../../data/job/jobStatusIcons";
-import { Send } from "@mui/icons-material";
+import { useJobs } from "../../hooks/job/useJobs";
 
 export const JobTable: FunctionComponent = () => {
   const [selectedJob, setSelectedJob] = useState<Job | null>();
-  const jobs: Job[] = [
-    { company: "Company 1", position: "Frontend Developer", status: JobStatus.InterviewScheduled },
-    { company: "Company 2", position: "Frontend Engineer", status: JobStatus.Rejected },
-    { company: "Company 3", position: "Software Engineer", status: JobStatus.Applied },
-  ];
+  const { jobs, jobsLoading } = useJobs();
 
   return (
     <Flexbox gap={2}>
@@ -69,7 +65,7 @@ export const JobTable: FunctionComponent = () => {
             placeholder="Status"
             value={selectedJob.status}
             onChange={(e) => {
-              setSelectedJob({ ...selectedJob, status: e.target.value });
+              setSelectedJob({ ...selectedJob, status: e.target.value as JobStatus });
             }}
           />
         </DetailsPanel>

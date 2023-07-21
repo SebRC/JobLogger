@@ -4,4 +4,5 @@ export interface Job {
   position: string;
   company: string;
   status: JobStatus;
+  id?: string;
 }
