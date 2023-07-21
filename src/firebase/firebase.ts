@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { initializeApp } from "firebase/app";
 import { DocumentSnapshot, SnapshotOptions, addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
 import { Job } from "../data/job/job";
@@ -46,12 +45,12 @@ export const jobConverter = {
     };
   },
   fromFirestore: (snapshot: DocumentSnapshot, options: SnapshotOptions): Job => {
-    const data = snapshot.data(options);
+    const data = snapshot.data(options) as Job;
     return {
       id: snapshot.id,
-      company: data?.company,
-      position: data?.position,
-      status: data?.status,
+      company: data.company,
+      position: data.position,
+      status: data.status,
     };
   },
 };
