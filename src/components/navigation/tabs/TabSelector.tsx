@@ -1,4 +1,4 @@
-import { Tabs, Tab, Box, Modal, Typography } from "@mui/material";
+import { Tabs, Tab, Typography } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import { TabContent } from "./TabContent";
 import { JobTable } from "../../table/job/JobTable";
@@ -29,7 +29,9 @@ export const TabSelector: FunctionComponent = () => {
             <Button onClick={() => setShowDialog(true)}>Create job</Button>
           </Paper>
           <JobTable />
-          {showDialog && <CreateJobDialog onCancel={() => setShowDialog(false)} />}
+          {showDialog && (
+            <CreateJobDialog onSubmit={() => setShowDialog(false)} onCancel={() => setShowDialog(false)} />
+          )}
         </Flexbox>
       </TabContent>
       <TabContent value={selectedTab} index={1}>

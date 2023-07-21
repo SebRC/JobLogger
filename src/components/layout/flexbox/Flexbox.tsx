@@ -1,5 +1,5 @@
 import { Box, SxProps } from "@mui/material";
-import React, { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent, ReactNode } from "react";
 
 interface FlexboxProps {
   flexDirection?: "row" | "column" | "row-reverse" | "column-reverse";

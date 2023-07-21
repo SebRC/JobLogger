@@ -21,7 +21,7 @@ export const Dialog: FunctionComponent<DialogProps> = ({ title, onCancel, onSubm
       <Flexbox gap={2} flexDirection="column" sx={{ padding: "24px" }}>
         {children}
         <Flexbox gap={2}>
-          <Button onClick={onCancel}>Confirm</Button>
+          <Button onClick={onSubmit}>Confirm</Button>
           <Button onClick={onCancel} color="secondary">
             Cancel
           </Button>
