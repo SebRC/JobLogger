@@ -49,6 +49,18 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
         items={[JobType.Remote, JobType.Hybrid, JobType.OnSite]}
         onChange={(e) => onChange({ ...job, type: e.target.value as JobType })}
       />
+      {job.type === JobType.Hybrid ||
+        (job.type === JobType.OnSite && (
+          <TextField
+            sx={{ width: "100%" }}
+            label="Address"
+            placeholder="Address"
+            value={job.position}
+            onChange={(e) => {
+              onChange({ ...job, position: e.target.value });
+            }}
+          />
+        ))}
     </FormControl>
   );
 };
