@@ -11,7 +11,7 @@ interface ButtonProps {
 
 export const Button: FunctionComponent<ButtonProps> = ({ children, variant = "contained", ...props }) => {
   return (
-    <MaterialButton variant={variant} {...props}>
+    <MaterialButton variant={variant} sx={{ maxHeight: "36px" }} {...props}>
       {children}
     </MaterialButton>
   );

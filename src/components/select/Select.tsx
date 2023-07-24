@@ -10,7 +10,7 @@ interface SelectProps {
 
 export const Select: FunctionComponent<SelectProps> = ({ label, items, value, onChange }) => {
   return (
-    <FormControl>
+    <FormControl fullWidth>
       <InputLabel htmlFor={`${label}-select`}>{label}</InputLabel>
       <MaterialSelect label={label} id={`${label}-select`} value={value} onChange={onChange}>
         {items.map((i) => (

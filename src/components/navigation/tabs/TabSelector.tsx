@@ -1,4 +1,4 @@
-import { Tabs, Tab, Typography } from "@mui/material";
+import { Tabs, Tab, Typography, Box } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import { TabContent } from "./TabContent";
 import { JobTable } from "../../table/job/JobTable";
@@ -7,10 +7,13 @@ import { Button } from "../../button/Button";
 import { Paper } from "../../layout/paper/Paper";
 import { Flexbox } from "../../layout/flexbox/Flexbox";
 import { CreateJobDialog } from "../../dialog/CreateJobDialog";
+import { Select } from "../../select/Select";
+import { JobStatus } from "../../../data/job/status";
 
 export const TabSelector: FunctionComponent = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [showDialog, setShowDialog] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState<JobStatus>(JobStatus.NotApplied);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue);
@@ -24,11 +27,18 @@ export const TabSelector: FunctionComponent = () => {
       </Tabs>
       <TabContent value={selectedTab} index={0}>
         <Flexbox gap={2} flexDirection="column">
-          <Paper sx={{ justifyContent: "space-between" }}>
-            <Typography>Job table</Typography>
+          <Paper sx={{ justifyContent: "space-between", p: "16px", alignItems: "center" }}>
+            <Flexbox width="30%">
+              <Select
+                value={selectedFilter}
+                items={[JobStatus.InterviewScheduled, JobStatus.NotApplied, JobStatus.Rejected]}
+                onChange={(e) => setSelectedFilter(e.target.value as JobStatus)}
+                label="Filter"
+              />
+            </Flexbox>
             <Button onClick={() => setShowDialog(true)}>Create job</Button>
           </Paper>
-          <JobTable />
+          <JobTable filter={selectedFilter} />
           {showDialog && (
             <CreateJobDialog
               open={showDialog}

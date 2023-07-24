@@ -16,8 +16,12 @@ import iconsMap from "../../../data/job/jobStatusIcons";
 import { useJobs } from "../../hooks/job/useJobs";
 import { JobDetailsPanel } from "../../panel/JobDetailsPanel";
 import { Paper } from "../../layout/paper/Paper";
+import { JobStatus } from "../../../data/job/status";
+interface JobTableProps {
+  filter: JobStatus;
+}
 
-export const JobTable: FunctionComponent = () => {
+export const JobTable: FunctionComponent<JobTableProps> = ({ filter }) => {
   const [selectedJob, setSelectedJob] = useState<Job | null>();
   const { jobs, jobsLoading } = useJobs();
   return jobsLoading ? (
@@ -38,24 +42,31 @@ export const JobTable: FunctionComponent = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {jobs.map((j) => (
-              <TableRow
-                sx={{ "&:hover": { cursor: "pointer" } }}
-                onClick={() => setSelectedJob(j)}
-                key={`${j.company}-${j.id ?? ""}`}
-              >
-                <TableCell>{j.company}</TableCell>
-                <TableCell>{j.position}</TableCell>
-                <TableCell>
-                  <Flexbox gap={2}>
-                    {iconsMap.get(j.status)}
-                    {j.status}
-                  </Flexbox>
-                </TableCell>
-                <TableCell>{j.type}</TableCell>
-                <TableCell>{j.address}</TableCell>
-              </TableRow>
-            ))}
+            {jobs
+              .sort((j) => {
+                if (j.status === filter) {
+                  return -1;
+                }
+                return 1;
+              })
+              .map((j) => (
+                <TableRow
+                  sx={{ "&:hover": { cursor: "pointer" } }}
+                  onClick={() => setSelectedJob(j)}
+                  key={`${j.company}-${j.id ?? ""}`}
+                >
+                  <TableCell>{j.company}</TableCell>
+                  <TableCell>{j.position}</TableCell>
+                  <TableCell>
+                    <Flexbox gap={2}>
+                      {iconsMap.get(j.status)}
+                      {j.status}
+                    </Flexbox>
+                  </TableCell>
+                  <TableCell>{j.type}</TableCell>
+                  <TableCell>{j.address}</TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
