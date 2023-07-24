@@ -3,14 +3,16 @@ import { FunctionComponent, ReactNode } from "react";
 import { Flexbox } from "../layout/flexbox/Flexbox";
 import { Paper } from "../layout/paper/Paper";
 import { ButtonClose } from "../button/ButtonClose";
+import { Button } from "../button/Button";
 
 interface DetailsPanelProps {
   title: string;
   onClose: () => void;
+  onDelete: () => void;
   children: ReactNode;
 }
 
-export const DetailsPanel: FunctionComponent<DetailsPanelProps> = ({ title, onClose, children }) => {
+export const DetailsPanel: FunctionComponent<DetailsPanelProps> = ({ title, onClose, onDelete, children }) => {
   return (
     <Paper sx={{ width: "40%" }}>
       <ButtonClose onClose={onClose} />
@@ -19,6 +21,7 @@ export const DetailsPanel: FunctionComponent<DetailsPanelProps> = ({ title, onCl
           {title}
         </Typography>
         {children}
+        <Button onClick={onDelete}>Delete</Button>
       </Flexbox>
     </Paper>
   );

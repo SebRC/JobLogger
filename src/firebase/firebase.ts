@@ -1,5 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { DocumentSnapshot, SnapshotOptions, addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  DocumentSnapshot,
+  SnapshotOptions,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  getFirestore,
+} from "firebase/firestore";
 import { Job } from "../data/job/job";
 
 const firebaseConfig = {
@@ -25,6 +34,10 @@ export const getJobs = async (): Promise<Job[]> => {
 
 export const createJob = async (job: Job) => {
   await addDoc(collection(db, "jobs"), job);
+};
+
+export const deleteJob = async (job: Job) => {
+  await deleteDoc(doc(db, "jobs", job.id ?? ""));
 };
 
 export const jobConverter = {
