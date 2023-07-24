@@ -39,7 +39,11 @@ export const JobTable: FunctionComponent = () => {
           </TableHead>
           <TableBody>
             {jobs.map((j) => (
-              <TableRow sx={{ "&:hover": { cursor: "pointer" } }} onClick={() => setSelectedJob(j)}>
+              <TableRow
+                sx={{ "&:hover": { cursor: "pointer" } }}
+                onClick={() => setSelectedJob(j)}
+                key={`${j.company}-${j.id ?? ""}`}
+              >
                 <TableCell>{j.company}</TableCell>
                 <TableCell>{j.position}</TableCell>
                 <TableCell>

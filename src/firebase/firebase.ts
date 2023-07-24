@@ -8,6 +8,7 @@ import {
   doc,
   getDocs,
   getFirestore,
+  setDoc,
 } from "firebase/firestore";
 import { Job } from "../data/job/job";
 
@@ -40,6 +41,11 @@ export const deleteJob = async (job: Job) => {
   await deleteDoc(doc(db, "jobs", job.id ?? ""));
 };
 
+export const updateJob = async (job: Job) => {
+  const ref = doc(db, "jobs", job.id ?? "undefined").withConverter(jobConverter);
+  await setDoc(ref, job);
+};
+
 export const jobConverter = {
   toFirestore: (job: Job) => {
     return {
@@ -48,7 +54,7 @@ export const jobConverter = {
       position: job.position,
       status: job.status,
       type: job.type,
-      address: job.address,
+      address: job.address ?? "",
     };
   },
   fromFirestore: (snapshot: DocumentSnapshot, options: SnapshotOptions): Job => {

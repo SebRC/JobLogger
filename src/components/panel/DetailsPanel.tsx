@@ -7,12 +7,21 @@ import { Button } from "../button/Button";
 
 interface DetailsPanelProps {
   title: string;
+  editing: boolean;
+  onSave: () => void;
   onClose: () => void;
   onDelete: () => void;
   children: ReactNode;
 }
 
-export const DetailsPanel: FunctionComponent<DetailsPanelProps> = ({ title, onClose, onDelete, children }) => {
+export const DetailsPanel: FunctionComponent<DetailsPanelProps> = ({
+  title,
+  editing,
+  onSave,
+  onClose,
+  onDelete,
+  children,
+}) => {
   return (
     <Paper sx={{ width: "40%" }}>
       <ButtonClose onClose={onClose} />
@@ -20,8 +29,13 @@ export const DetailsPanel: FunctionComponent<DetailsPanelProps> = ({ title, onCl
         <Typography variant="h4" fontWeight={700}>
           {title}
         </Typography>
+        <Flexbox gap={2}>
+          {editing && <Button onClick={onSave}>Save</Button>}
+          <Button onClick={onDelete} color="secondary" sx={{ width: "30%" }}>
+            Delete
+          </Button>
+        </Flexbox>
         {children}
-        <Button onClick={onDelete}>Delete</Button>
       </Flexbox>
     </Paper>
   );
