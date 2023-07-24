@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { DocumentSnapshot, SnapshotOptions, addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
 import { Job } from "../data/job/job";
-import { JobStatus } from "../data/job/status";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -36,6 +35,7 @@ export const jobConverter = {
       position: job.position,
       status: job.status,
       type: job.type,
+      address: job.address,
     };
   },
   fromFirestore: (snapshot: DocumentSnapshot, options: SnapshotOptions): Job => {
@@ -46,6 +46,7 @@ export const jobConverter = {
       position: data.position,
       status: data.status,
       type: data.type,
+      address: data.address,
     };
   },
 };

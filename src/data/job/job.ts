@@ -6,5 +6,6 @@ export interface Job {
   company: string;
   status: JobStatus;
   type: JobType;
+  address?: string;
   id?: string;
 }

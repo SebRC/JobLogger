@@ -33,6 +33,8 @@ export const JobTable: FunctionComponent = () => {
               <TableCell>Company</TableCell>
               <TableCell>Position</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Address</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -47,6 +49,7 @@ export const JobTable: FunctionComponent = () => {
                   </Flexbox>
                 </TableCell>
                 <TableCell>{j.type}</TableCell>
+                <TableCell>{j.address}</TableCell>
               </TableRow>
             ))}
           </TableBody>
