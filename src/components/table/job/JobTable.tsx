@@ -7,6 +7,7 @@ import { DetailsPanel } from "../../panel/DetailsPanel";
 import { JobStatus } from "../../../data/job/status";
 import iconsMap from "../../../data/job/jobStatusIcons";
 import { useJobs } from "../../hooks/job/useJobs";
+import { JobDetailsPanel } from "../../panel/JobDetailsPanel";
 
 export const JobTable: FunctionComponent = () => {
   const [selectedJob, setSelectedJob] = useState<Job | null>();
@@ -39,37 +40,7 @@ export const JobTable: FunctionComponent = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      {selectedJob && (
-        <DetailsPanel title="Job details" onClose={() => setSelectedJob(null)}>
-          <TextField
-            sx={{ width: "100%" }}
-            label="Company"
-            placeholder="Company"
-            value={selectedJob.company}
-            onChange={(e) => {
-              setSelectedJob({ ...selectedJob, company: e.target.value });
-            }}
-          />
-          <TextField
-            sx={{ width: "100%" }}
-            label="Role"
-            placeholder="Role"
-            value={selectedJob.position}
-            onChange={(e) => {
-              setSelectedJob({ ...selectedJob, position: e.target.value });
-            }}
-          />
-          <TextField
-            sx={{ width: "100%" }}
-            label="Status"
-            placeholder="Status"
-            value={selectedJob.status}
-            onChange={(e) => {
-              setSelectedJob({ ...selectedJob, status: e.target.value as JobStatus });
-            }}
-          />
-        </DetailsPanel>
-      )}
+      {selectedJob && <JobDetailsPanel job={selectedJob} onClose={() => setSelectedJob(null)} />}
     </Flexbox>
   );
 };

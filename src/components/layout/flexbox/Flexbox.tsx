@@ -34,7 +34,14 @@ export const Flexbox: FunctionComponent<FlexboxProps> = ({
   ...rest
 }) => {
   return (
-    <Box gap={gap} display={"flex"} position={"relative"} flexDirection={flexDirection} {...rest} sx={{ ...sx }}>
+    <Box
+      gap={gap}
+      display={"flex"}
+      position={"relative"}
+      flexDirection={flexDirection}
+      {...rest}
+      sx={{ ...sx, outline: debug ? "2px solid red" : "" }}
+    >
       {children}
     </Box>
   );
