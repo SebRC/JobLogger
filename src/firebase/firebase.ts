@@ -12,8 +12,6 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-console.log(firebaseConfig);
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -26,12 +24,7 @@ export const getJobs = async (): Promise<Job[]> => {
   return jobs;
 };
 
-export const createJob = async (data: { company: string; position: string; status: string }) => {
-  const job: Job = {
-    company: data.company,
-    position: data.position,
-    status: data.status as JobStatus,
-  };
+export const createJob = async (job: Job) => {
   await addDoc(collection(db, "jobs"), job);
 };
 
@@ -42,6 +35,7 @@ export const jobConverter = {
       company: job.company,
       position: job.position,
       status: job.status,
+      type: job.type,
     };
   },
   fromFirestore: (snapshot: DocumentSnapshot, options: SnapshotOptions): Job => {
@@ -51,6 +45,7 @@ export const jobConverter = {
       company: data.company,
       position: data.position,
       status: data.status,
+      type: data.type,
     };
   },
 };

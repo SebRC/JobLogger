@@ -1,9 +1,6 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { Job } from "../../data/job/job";
-import { TextField } from "@mui/material";
-import { JobStatus } from "../../data/job/status";
 import { DetailsPanel } from "./DetailsPanel";
-import { Select } from "../select/Select";
 import { JobForm } from "../form/JobForm";
 
 interface JobDetailsPanelProps {

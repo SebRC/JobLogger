@@ -3,6 +3,7 @@ import { Job } from "../../data/job/job";
 import { FormControl, TextField } from "@mui/material";
 import { JobStatus } from "../../data/job/status";
 import { Select } from "../select/Select";
+import { JobType } from "../../data/job/jobType";
 
 interface JobFormProps {
   job: Job;
@@ -41,6 +42,12 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
           JobStatus.Hired,
         ]}
         onChange={(e) => onChange({ ...job, status: e.target.value as JobStatus })}
+      />
+      <Select
+        label="Type"
+        value={job.type}
+        items={[JobType.Remote, JobType.Hybrid, JobType.OnSite]}
+        onChange={(e) => onChange({ ...job, type: e.target.value as JobType })}
       />
     </FormControl>
   );

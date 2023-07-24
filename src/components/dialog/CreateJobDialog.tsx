@@ -1,10 +1,10 @@
 import { FunctionComponent, useState } from "react";
 import { Dialog } from "./Dialog";
-import { TextField } from "@mui/material";
 import { createJob } from "../../firebase/firebase";
 import { JobForm } from "../form/JobForm";
 import { Job } from "../../data/job/job";
 import { JobStatus } from "../../data/job/status";
+import { JobType } from "../../data/job/jobType";
 
 interface CreateJobDialogProps {
   onCancel: () => void;
@@ -12,10 +12,15 @@ interface CreateJobDialogProps {
 }
 
 export const CreateJobDialog: FunctionComponent<CreateJobDialogProps> = ({ onSubmit, onCancel }) => {
-  const [job, setJob] = useState<Job>({ company: "", status: JobStatus.NotApplied, position: "" });
+  const [job, setJob] = useState<Job>({
+    company: "",
+    status: JobStatus.NotApplied,
+    position: "",
+    type: JobType.OnSite,
+  });
 
   const handleSubmit = async () => {
-    await createJob({ company: job.company, position: job.position, status: job.status });
+    await createJob(job);
     onSubmit();
   };
 

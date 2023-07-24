@@ -7,8 +7,6 @@ import { Button } from "../../button/Button";
 import { Paper } from "../../layout/paper/Paper";
 import { Flexbox } from "../../layout/flexbox/Flexbox";
 import { CreateJobDialog } from "../../dialog/CreateJobDialog";
-import { Job } from "../../../data/job/job";
-import { createJob } from "../../../firebase/firebase";
 
 export const TabSelector: FunctionComponent = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -16,11 +14,6 @@ export const TabSelector: FunctionComponent = () => {
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue);
-  };
-
-  const handleCreateJobSubmit = async (job: Job) => {
-    await createJob(job);
-    setShowDialog(false);
   };
 
   return (

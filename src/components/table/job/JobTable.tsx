@@ -1,19 +1,32 @@
 "use client";
 import { FunctionComponent, useState } from "react";
 import { Job } from "../../../data/job/job";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import {
+  CircularProgress,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper as MaterialPaper,
+} from "@mui/material";
 import { Flexbox } from "../../layout/flexbox/Flexbox";
 import iconsMap from "../../../data/job/jobStatusIcons";
 import { useJobs } from "../../hooks/job/useJobs";
 import { JobDetailsPanel } from "../../panel/JobDetailsPanel";
+import { Paper } from "../../layout/paper/Paper";
 
 export const JobTable: FunctionComponent = () => {
   const [selectedJob, setSelectedJob] = useState<Job | null>();
   const { jobs, jobsLoading } = useJobs();
-
-  return (
+  return jobsLoading ? (
+    <Paper sx={{ justifyContent: "center", height: "70vh", alignItems: "center" }}>
+      <CircularProgress />
+    </Paper>
+  ) : (
     <Flexbox gap={2}>
-      <TableContainer component={Paper}>
+      <TableContainer component={MaterialPaper}>
         <Table>
           <TableHead>
             <TableRow>
@@ -33,6 +46,7 @@ export const JobTable: FunctionComponent = () => {
                     {j.status}
                   </Flexbox>
                 </TableCell>
+                <TableCell>{j.type}</TableCell>
               </TableRow>
             ))}
           </TableBody>
