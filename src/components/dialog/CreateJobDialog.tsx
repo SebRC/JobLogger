@@ -2,6 +2,9 @@ import { FunctionComponent, useState } from "react";
 import { Dialog } from "./Dialog";
 import { TextField } from "@mui/material";
 import { createJob } from "../../firebase/firebase";
+import { JobForm } from "../form/JobForm";
+import { Job } from "../../data/job/job";
+import { JobStatus } from "../../data/job/status";
 
 interface CreateJobDialogProps {
   onCancel: () => void;
@@ -9,25 +12,16 @@ interface CreateJobDialogProps {
 }
 
 export const CreateJobDialog: FunctionComponent<CreateJobDialogProps> = ({ onSubmit, onCancel }) => {
-  const [company, setCompany] = useState("");
-  const [position, setPosition] = useState("");
-  const [status, setStatus] = useState("");
+  const [job, setJob] = useState<Job>({ company: "", status: JobStatus.NotApplied, position: "" });
 
   const handleSubmit = async () => {
-    await createJob({ company: company, position: position, status: status });
+    await createJob({ company: job.company, position: job.position, status: job.status });
     onSubmit();
   };
 
   return (
     <Dialog title="Create job" onSubmit={async () => await handleSubmit()} onCancel={onCancel}>
-      <TextField label="Company" placeholder="Company" value={company} onChange={(e) => setCompany(e.target.value)} />
-      <TextField
-        label="Position"
-        placeholder="Position"
-        value={position}
-        onChange={(e) => setPosition(e.target.value)}
-      />
-      <TextField label="Status" placeholder="Status" value={status} onChange={(e) => setStatus(e.target.value)} />
+      <JobForm job={job} onChange={setJob} />
     </Dialog>
   );
 };

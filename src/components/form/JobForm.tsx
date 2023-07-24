@@ -6,12 +6,12 @@ import { Select } from "../select/Select";
 
 interface JobFormProps {
   job: Job;
-  onChange: React.Dispatch<React.SetStateAction<Job | null | undefined>>;
+  onChange: React.Dispatch<React.SetStateAction<Job>>;
 }
 
 export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
   return (
-    <FormControl>
+    <FormControl sx={{ gap: 2 }}>
       <TextField
         sx={{ width: "100%" }}
         label="Company"
