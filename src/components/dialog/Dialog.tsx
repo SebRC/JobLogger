@@ -6,14 +6,15 @@ import { Button } from "../button/Button";
 
 interface DialogProps {
   title: string;
+  open: boolean;
   onCancel: () => void;
   onSubmit: () => void;
   children: ReactNode;
 }
 
-export const Dialog: FunctionComponent<DialogProps> = ({ title, onCancel, onSubmit, children }) => {
+export const Dialog: FunctionComponent<DialogProps> = ({ title, open, onCancel, onSubmit, children }) => {
   return (
-    <MaterialDialog open fullWidth sx={{ width: "lg" }}>
+    <MaterialDialog open={open} fullWidth sx={{ width: "lg" }}>
       <Flexbox>
         <DialogTitle>{title}</DialogTitle>
         <ButtonClose onClose={onCancel} />

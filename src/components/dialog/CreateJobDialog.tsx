@@ -7,11 +7,12 @@ import { JobStatus } from "../../data/job/status";
 import { JobType } from "../../data/job/jobType";
 
 interface CreateJobDialogProps {
+  open: boolean;
   onCancel: () => void;
   onSubmit: () => void;
 }
 
-export const CreateJobDialog: FunctionComponent<CreateJobDialogProps> = ({ onSubmit, onCancel }) => {
+export const CreateJobDialog: FunctionComponent<CreateJobDialogProps> = ({ open, onSubmit, onCancel }) => {
   const [job, setJob] = useState<Job>({
     company: "",
     status: JobStatus.NotApplied,
@@ -25,7 +26,7 @@ export const CreateJobDialog: FunctionComponent<CreateJobDialogProps> = ({ onSub
   };
 
   return (
-    <Dialog title="Create job" onSubmit={async () => await handleSubmit()} onCancel={onCancel}>
+    <Dialog open={open} title="Create job" onSubmit={async () => await handleSubmit()} onCancel={onCancel}>
       <JobForm job={job} onChange={setJob} />
     </Dialog>
   );
