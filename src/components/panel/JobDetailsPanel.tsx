@@ -3,43 +3,46 @@ import { Job } from "../../data/job/job";
 import { TextField } from "@mui/material";
 import { JobStatus } from "../../data/job/status";
 import { DetailsPanel } from "./DetailsPanel";
+import { Select } from "../select/Select";
 
 interface JobDetailsPanelProps {
   job: Job;
+  onChange: React.Dispatch<React.SetStateAction<Job | null | undefined>>;
   onClose: () => void;
 }
 
-export const JobDetailsPanel: FunctionComponent<JobDetailsPanelProps> = ({ job, onClose }) => {
-  const [selectedJob, setSelectedJob] = useState(job);
-
+export const JobDetailsPanel: FunctionComponent<JobDetailsPanelProps> = ({ job, onChange, onClose }) => {
   return (
     <DetailsPanel title="Job details" onClose={onClose}>
       <TextField
         sx={{ width: "100%" }}
         label="Company"
         placeholder="Company"
-        value={selectedJob.company}
+        value={job.company}
         onChange={(e) => {
-          setSelectedJob({ ...selectedJob, company: e.target.value });
+          onChange({ ...job, company: e.target.value });
         }}
       />
       <TextField
         sx={{ width: "100%" }}
         label="Role"
         placeholder="Role"
-        value={selectedJob.position}
+        value={job.position}
         onChange={(e) => {
-          setSelectedJob({ ...selectedJob, position: e.target.value });
+          onChange({ ...job, position: e.target.value });
         }}
       />
-      <TextField
-        sx={{ width: "100%" }}
+      <Select
         label="Status"
-        placeholder="Status"
-        value={selectedJob.status}
-        onChange={(e) => {
-          setSelectedJob({ ...selectedJob, status: e.target.value as JobStatus });
-        }}
+        value={job.status}
+        items={[
+          JobStatus.NotApplied,
+          JobStatus.Applied,
+          JobStatus.InterviewScheduled,
+          JobStatus.Rejected,
+          JobStatus.Hired,
+        ]}
+        onChange={(e) => onChange({ ...job, status: e.target.value as JobStatus })}
       />
     </DetailsPanel>
   );

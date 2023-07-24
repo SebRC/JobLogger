@@ -1,10 +1,8 @@
 "use client";
 import { FunctionComponent, useState } from "react";
 import { Job } from "../../../data/job/job";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@mui/material";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { Flexbox } from "../../layout/flexbox/Flexbox";
-import { DetailsPanel } from "../../panel/DetailsPanel";
-import { JobStatus } from "../../../data/job/status";
 import iconsMap from "../../../data/job/jobStatusIcons";
 import { useJobs } from "../../hooks/job/useJobs";
 import { JobDetailsPanel } from "../../panel/JobDetailsPanel";
@@ -40,7 +38,9 @@ export const JobTable: FunctionComponent = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      {selectedJob && <JobDetailsPanel job={selectedJob} onClose={() => setSelectedJob(null)} />}
+      {selectedJob && (
+        <JobDetailsPanel job={selectedJob} onClose={() => setSelectedJob(null)} onChange={setSelectedJob} />
+      )}
     </Flexbox>
   );
 };
