@@ -19,8 +19,8 @@ export const JobDetailsPanel: FunctionComponent<JobDetailsPanelProps> = ({ job, 
   };
 
   const handleSave = async () => {
-    await updateJob(job);
     setEditing(false);
+    await updateJob(job);
   };
 
   return (

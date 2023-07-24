@@ -29,11 +29,13 @@ export const TabSelector: FunctionComponent = () => {
             <Button onClick={() => setShowDialog(true)}>Create job</Button>
           </Paper>
           <JobTable />
-          <CreateJobDialog
-            open={showDialog}
-            onSubmit={() => setShowDialog(false)}
-            onCancel={() => setShowDialog(false)}
-          />
+          {showDialog && (
+            <CreateJobDialog
+              open={showDialog}
+              onSubmit={() => setShowDialog(false)}
+              onCancel={() => setShowDialog(false)}
+            />
+          )}
         </Flexbox>
       </TabContent>
       <TabContent value={selectedTab} index={1}>

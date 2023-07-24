@@ -8,7 +8,7 @@ interface ButtonCloseProps {
 
 export const ButtonClose: FunctionComponent<ButtonCloseProps> = ({ onClose }) => {
   return (
-    <IconButton onClick={onClose} sx={{ position: "absolute", right: 4, zIndex: 2 }}>
+    <IconButton onClick={onClose} sx={{ position: "absolute", right: 4, top: 4, zIndex: 2 }}>
       <Close />
     </IconButton>
   );
