@@ -1,9 +1,10 @@
 import { Typography } from "@mui/material";
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent, ReactNode, useState } from "react";
 import { Flexbox } from "../layout/flexbox/Flexbox";
 import { Paper } from "../layout/paper/Paper";
 import { ButtonClose } from "../button/ButtonClose";
 import { Button } from "../button/Button";
+import { DeleteJobDialog } from "../dialog/DeleteJobDialog";
 
 interface DetailsPanelProps {
   title: string;
@@ -22,6 +23,7 @@ export const DetailsPanel: FunctionComponent<DetailsPanelProps> = ({
   onDelete,
   children,
 }) => {
+  const [showDialog, setShowDialog] = useState(false);
   return (
     <Paper sx={{ width: "40%" }}>
       <ButtonClose onClose={onClose} />
@@ -31,12 +33,13 @@ export const DetailsPanel: FunctionComponent<DetailsPanelProps> = ({
         </Typography>
         <Flexbox gap={2}>
           {editing && <Button onClick={onSave}>Save</Button>}
-          <Button onClick={onDelete} color="secondary" sx={{ width: "30%" }}>
+          <Button onClick={() => setShowDialog(true)} color="secondary" sx={{ width: "30%" }}>
             Delete
           </Button>
         </Flexbox>
         {children}
       </Flexbox>
+      {showDialog && <DeleteJobDialog onCancel={() => setShowDialog(false)} onDelete={onDelete} />}
     </Paper>
   );
 };
