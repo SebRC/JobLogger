@@ -10,7 +10,7 @@ import { TabSelector } from "./components/navigation/tabs/TabSelector";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static" sx={{ borderBottomLeftRadius: "16px", borderBottomRightRadius: "16px" }}>
+      <AppBar position="static">
         <Toolbar>
           <Typography variant="h6">Job search</Typography>
         </Toolbar>
