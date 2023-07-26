@@ -31,7 +31,13 @@ export const TabSelector: FunctionComponent = () => {
             <Flexbox width="30%">
               <Select
                 value={selectedFilter}
-                items={[JobStatus.InterviewScheduled, JobStatus.NotApplied, JobStatus.Rejected]}
+                items={[
+                  JobStatus.InterviewScheduled,
+                  JobStatus.NotApplied,
+                  JobStatus.Rejected,
+                  JobStatus.Applied,
+                  JobStatus.Hired,
+                ]}
                 onChange={(e) => setSelectedFilter(e.target.value as JobStatus)}
                 label="Filter"
               />

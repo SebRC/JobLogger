@@ -12,7 +12,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">Job search</Typography>
+          <Typography variant="h6">Job logger</Typography>
         </Toolbar>
       </AppBar>
       <Page>

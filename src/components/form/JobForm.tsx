@@ -12,7 +12,7 @@ interface JobFormProps {
 
 export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
   return (
-    <FormControl sx={{ gap: 2 }}>
+    <FormControl sx={{ gap: 4 }}>
       <TextField
         label="Company"
         placeholder="Company"
