@@ -7,5 +7,6 @@ export interface Job {
   status: JobStatus;
   type: JobType;
   address?: string;
+  link?: string;
   id?: string;
 }

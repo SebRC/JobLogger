@@ -3,6 +3,7 @@ import { Job } from "../../data/job/job";
 import { DetailsPanel } from "./DetailsPanel";
 import { JobForm } from "../form/JobForm";
 import { deleteJob, updateJob } from "../../firebase/firebase";
+import { Link } from "@mui/material";
 
 interface JobDetailsPanelProps {
   job: Job;
@@ -31,6 +32,14 @@ export const JobDetailsPanel: FunctionComponent<JobDetailsPanelProps> = ({ job, 
       onClose={onClose}
       onDelete={async () => await handleDelete()}
     >
+      {job.link && (
+        <Link
+          href={job.link}
+          underline="none"
+          target="_blank"
+          rel="noopener"
+        >{`${job.position} at ${job.company}`}</Link>
+      )}
       <JobForm
         job={job}
         onChange={(j) => {

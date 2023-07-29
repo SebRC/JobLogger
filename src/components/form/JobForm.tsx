@@ -4,6 +4,7 @@ import { FormControl, TextField } from "@mui/material";
 import { JobStatus } from "../../data/job/status";
 import { Select } from "../select/Select";
 import { JobType } from "../../data/job/jobType";
+import { DatePicker } from "@mui/x-date-pickers";
 
 interface JobFormProps {
   job: Job;
@@ -27,6 +28,14 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
         value={job.position}
         onChange={(e) => {
           onChange({ ...job, position: e.target.value });
+        }}
+      />
+      <TextField
+        label="Link"
+        placeholder="Link"
+        value={job.link}
+        onChange={(e) => {
+          onChange({ ...job, link: e.target.value });
         }}
       />
       <Select
@@ -57,6 +66,7 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
           }}
         />
       )}
+      <DatePicker />
     </FormControl>
   );
 };

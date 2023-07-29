@@ -30,7 +30,6 @@ export const JobTable: FunctionComponent<JobTableProps> = ({ sort, filterRejecte
     return filterRejected ? jobs.filter((j) => j.status !== JobStatus.Rejected) : jobs;
   }, [filterRejected, jobs]);
 
-  console.table(filteredJobs);
   return jobsLoading ? (
     <Paper sx={{ justifyContent: "center", height: "70vh", alignItems: "center" }}>
       <CircularProgress />

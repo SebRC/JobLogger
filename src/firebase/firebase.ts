@@ -55,6 +55,7 @@ export const jobConverter = {
       status: job.status,
       type: job.type,
       address: job.address ?? "",
+      link: job.link ?? "",
     };
   },
   fromFirestore: (snapshot: DocumentSnapshot, options: SnapshotOptions): Job => {
@@ -66,6 +67,7 @@ export const jobConverter = {
       status: data.status,
       type: data.type,
       address: data.address,
+      link: data.link,
     };
   },
 };
