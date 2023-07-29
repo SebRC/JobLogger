@@ -1,5 +1,5 @@
 "use client";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useMemo, useState } from "react";
 import { Job } from "../../../data/job/job";
 import {
   CircularProgress,
@@ -18,12 +18,19 @@ import { JobDetailsPanel } from "../../panel/JobDetailsPanel";
 import { Paper } from "../../layout/paper/Paper";
 import { JobStatus } from "../../../data/job/status";
 interface JobTableProps {
-  filter: JobStatus;
+  sort: JobStatus;
+  filterRejected: boolean;
 }
 
-export const JobTable: FunctionComponent<JobTableProps> = ({ filter }) => {
+export const JobTable: FunctionComponent<JobTableProps> = ({ sort, filterRejected }) => {
   const [selectedJob, setSelectedJob] = useState<Job | null>();
   const { jobs, jobsLoading } = useJobs();
+
+  const filteredJobs = useMemo(() => {
+    return filterRejected ? jobs.filter((j) => j.status !== JobStatus.Rejected) : jobs;
+  }, [filterRejected, jobs]);
+
+  console.table(filteredJobs);
   return jobsLoading ? (
     <Paper sx={{ justifyContent: "center", height: "70vh", alignItems: "center" }}>
       <CircularProgress />
@@ -42,9 +49,9 @@ export const JobTable: FunctionComponent<JobTableProps> = ({ filter }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {jobs
+            {filteredJobs
               .sort((j) => {
-                if (j.status === filter) {
+                if (j.status === sort) {
                   return -1;
                 }
                 return 1;
