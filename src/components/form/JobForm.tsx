@@ -70,6 +70,7 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
       {job.status === JobStatus.InterviewScheduled && (
         <>
           <DateTimePicker
+            ampm={false}
             value={dayjs(job.interviewDate)}
             onChange={(v) => {
               console.log("value", v);
