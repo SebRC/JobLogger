@@ -4,7 +4,8 @@ import { FormControl, TextField } from "@mui/material";
 import { JobStatus } from "../../data/job/status";
 import { Select } from "../select/Select";
 import { JobType } from "../../data/job/jobType";
-import { DatePicker } from "@mui/x-date-pickers";
+import { DatePicker, DateTimePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
 
 interface JobFormProps {
   job: Job;
@@ -66,7 +67,17 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
           }}
         />
       )}
-      <DatePicker />
+      {job.status === JobStatus.InterviewScheduled && (
+        <>
+          <DateTimePicker
+            value={dayjs(job.interviewDate)}
+            onChange={(v) => {
+              console.log("value", v);
+              onChange({ ...job, interviewDate: v?.toString() });
+            }}
+          />
+        </>
+      )}
     </FormControl>
   );
 };
