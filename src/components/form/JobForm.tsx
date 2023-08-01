@@ -1,11 +1,14 @@
 import { FunctionComponent } from "react";
 import { Job } from "../../data/job/job";
-import { FormControl, TextField } from "@mui/material";
+import { FormControl, InputAdornment, TextField, Typography } from "@mui/material";
 import { JobStatus } from "../../data/job/status";
 import { Select } from "../select/Select";
 import { JobType } from "../../data/job/jobType";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import { Input } from "../input/Input";
+import { NumberInput } from "../input/NumberInput";
+import { Search } from "@mui/icons-material";
 
 interface JobFormProps {
   job: Job;
@@ -16,7 +19,7 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
   console.log("link", job.link);
   return (
     <FormControl sx={{ gap: 4 }}>
-      <TextField
+      <Input
         label="Company"
         placeholder="Company"
         value={job.company}
@@ -24,7 +27,7 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
           onChange({ ...job, company: e.target.value });
         }}
       />
-      <TextField
+      <Input
         label="Role"
         placeholder="Role"
         value={job.position}
@@ -32,7 +35,16 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
           onChange({ ...job, position: e.target.value });
         }}
       />
-      <TextField
+      <NumberInput
+        label="Monthly salary expectation"
+        placeholder="Salary"
+        value={job.monthlySalaryExpectation}
+        onChange={(e) => onChange({ ...job, monthlySalaryExpectation: e })}
+        InputProps={{
+          endAdornment: <InputAdornment position="end">DKK/month</InputAdornment>,
+        }}
+      />
+      <Input
         label="Link"
         placeholder="Link"
         value={job.link}
@@ -59,7 +71,7 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
         onChange={(e) => onChange({ ...job, type: e.target.value as JobType })}
       />
       {(job.type === JobType.Hybrid || job.type === JobType.OnSite) && (
-        <TextField
+        <Input
           label="Address"
           placeholder="Address"
           value={job.address}

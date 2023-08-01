@@ -48,21 +48,13 @@ export const updateJob = async (job: Job) => {
 
 export const jobConverter = {
   toFirestore: (job: Job) => {
-    console.log(job);
-    return {
-      ...job,
-      address: job.address ?? "",
-      link: job.link ?? "",
-      interviewDate: job.interviewDate ?? "",
-    };
+    return job;
   },
   fromFirestore: (snapshot: DocumentSnapshot, options: SnapshotOptions): Job => {
     const data = snapshot.data(options) as Job;
     return {
       id: snapshot.id,
-      address: data.address ?? "",
-      link: data.link ?? "",
-      interviewDate: data.interviewDate ?? "",
+      monthlySalaryExpectation: data.monthlySalaryExpectation ?? 0,
       ...data,
     };
   },

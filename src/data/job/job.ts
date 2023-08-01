@@ -6,8 +6,9 @@ export interface Job {
   company: string;
   status: JobStatus;
   type: JobType;
-  address?: string;
-  interviewDate?: string;
-  link?: string;
+  address: string;
+  interviewDate: string;
+  link: string;
   id?: string;
+  monthlySalaryExpectation: number;
 }
