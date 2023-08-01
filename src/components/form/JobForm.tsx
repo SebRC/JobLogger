@@ -4,7 +4,7 @@ import { FormControl, TextField } from "@mui/material";
 import { JobStatus } from "../../data/job/status";
 import { Select } from "../select/Select";
 import { JobType } from "../../data/job/jobType";
-import { DatePicker, DateTimePicker } from "@mui/x-date-pickers";
+import { DateTimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 
 interface JobFormProps {
@@ -13,6 +13,7 @@ interface JobFormProps {
 }
 
 export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
+  console.log("link", job.link);
   return (
     <FormControl sx={{ gap: 4 }}>
       <TextField

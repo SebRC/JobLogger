@@ -60,6 +60,9 @@ export const jobConverter = {
     const data = snapshot.data(options) as Job;
     return {
       id: snapshot.id,
+      address: data.address ?? "",
+      link: data.link ?? "",
+      interviewDate: data.interviewDate ?? "",
       ...data,
     };
   },
