@@ -1,4 +1,4 @@
-import { Tabs, Tab } from "@mui/material";
+import { Tabs, Tab, TextField } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import { TabContent } from "./TabContent";
 import { JobTable } from "../../table/job/JobTable";
@@ -16,6 +16,7 @@ export const TabSelector: FunctionComponent = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [selectedSort, setSelectedSort] = useState<JobStatus>(JobStatus.NotApplied);
   const [filterRejected, setFilterRejected] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue);
@@ -30,7 +31,13 @@ export const TabSelector: FunctionComponent = () => {
       <TabContent value={selectedTab} index={0}>
         <Flexbox gap={2} flexDirection="column">
           <Paper sx={{ justifyContent: "space-between", p: "16px", alignItems: "center" }}>
-            <Flexbox gap={4} width="50%">
+            <Flexbox gap={4} width="80%">
+              <TextField
+                placeholder="Search"
+                fullWidth
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+              />
               <Select
                 value={selectedSort}
                 items={[
@@ -51,7 +58,7 @@ export const TabSelector: FunctionComponent = () => {
             </Flexbox>
             <Button onClick={() => setShowDialog(true)}>Create job</Button>
           </Paper>
-          <JobTable sort={selectedSort} filterRejected={filterRejected} />
+          <JobTable sort={selectedSort} filterRejected={filterRejected} searchValue={searchValue} />
           {showDialog && (
             <CreateJobDialog
               open={showDialog}

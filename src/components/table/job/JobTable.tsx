@@ -20,15 +20,17 @@ import { JobStatus } from "../../../data/job/status";
 interface JobTableProps {
   sort: JobStatus;
   filterRejected: boolean;
+  searchValue: string;
 }
 
-export const JobTable: FunctionComponent<JobTableProps> = ({ sort, filterRejected }) => {
+export const JobTable: FunctionComponent<JobTableProps> = ({ sort, filterRejected, searchValue }) => {
   const [selectedJob, setSelectedJob] = useState<Job | null>();
   const { jobs, jobsLoading } = useJobs();
 
   const filteredJobs = useMemo(() => {
-    return filterRejected ? jobs.filter((j) => j.status !== JobStatus.Rejected) : jobs;
-  }, [filterRejected, jobs]);
+    const filtered = jobs.filter((j) => j.company.toLowerCase().includes(searchValue));
+    return filterRejected ? filtered.filter((j) => j.status !== JobStatus.Rejected) : filtered;
+  }, [filterRejected, jobs, searchValue]);
 
   return jobsLoading ? (
     <Paper sx={{ justifyContent: "center", height: "70vh", alignItems: "center" }}>
