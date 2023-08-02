@@ -44,7 +44,7 @@ export const TabSelector: FunctionComponent = () => {
                   JobStatus.Hired,
                 ]}
                 onChange={(e) => setSelectedSort(e.target.value as JobStatus)}
-                label="Filter"
+                label="Sort by"
               />
               <Switch
                 label="Filter rejected"
