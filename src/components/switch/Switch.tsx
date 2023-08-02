@@ -1,6 +1,5 @@
-import { FormControlLabel, Switch as MaterialSwitch, Typography } from "@mui/material";
+import { FormControlLabel, Switch as MaterialSwitch } from "@mui/material";
 import { FunctionComponent } from "react";
-import { Flexbox } from "../layout/flexbox/Flexbox";
 
 interface SwitchProps {
   label: string;

@@ -1,4 +1,4 @@
-import { Tabs, Tab, TextField, InputAdornment } from "@mui/material";
+import { Tabs, Tab } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import { TabContent } from "./TabContent";
 import { JobTable } from "../../table/job/JobTable";
@@ -10,7 +10,7 @@ import { CreateJobDialog } from "../../dialog/CreateJobDialog";
 import { Select } from "../../select/Select";
 import { JobStatus } from "../../../data/job/status";
 import { Switch } from "../../switch/Switch";
-import { Search } from "@mui/icons-material";
+import { SearchInput } from "../../input/SearchInput";
 
 export const TabSelector: FunctionComponent = () => {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -33,19 +33,7 @@ export const TabSelector: FunctionComponent = () => {
         <Flexbox gap={2} flexDirection="column">
           <Paper sx={{ justifyContent: "space-between", p: "16px", alignItems: "center" }}>
             <Flexbox gap={4} width="80%">
-              <TextField
-                placeholder="Search"
-                fullWidth
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <Search />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+              <SearchInput value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
               <Select
                 value={selectedSort}
                 items={[

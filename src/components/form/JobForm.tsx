@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Job } from "../../data/job/job";
-import { FormControl, InputAdornment, TextField, Typography } from "@mui/material";
+import { FormControl, InputAdornment } from "@mui/material";
 import { JobStatus } from "../../data/job/status";
 import { Select } from "../select/Select";
 import { JobType } from "../../data/job/jobType";
@@ -8,7 +8,6 @@ import { DateTimePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { Input } from "../input/Input";
 import { NumberInput } from "../input/NumberInput";
-import { Search } from "@mui/icons-material";
 
 interface JobFormProps {
   job: Job;
@@ -83,6 +82,7 @@ export const JobForm: FunctionComponent<JobFormProps> = ({ job, onChange }) => {
       {job.status === JobStatus.InterviewScheduled && (
         <>
           <DateTimePicker
+            label="Interview date"
             ampm={false}
             value={dayjs(job.interviewDate)}
             onChange={(v) => {

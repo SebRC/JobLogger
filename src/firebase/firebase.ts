@@ -54,7 +54,6 @@ export const jobConverter = {
     const data = snapshot.data(options) as Job;
     return {
       id: snapshot.id,
-      monthlySalaryExpectation: data.monthlySalaryExpectation ?? 0,
       ...data,
     };
   },
