@@ -18,6 +18,10 @@ export const CreateJobDialog: FunctionComponent<CreateJobDialogProps> = ({ open,
     status: JobStatus.NotApplied,
     position: "",
     type: JobType.OnSite,
+    address: "",
+    interviewDate: "",
+    link: "",
+    monthlySalaryExpectation: 0,
   });
 
   const handleSubmit = async () => {
